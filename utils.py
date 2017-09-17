@@ -69,7 +69,7 @@ OTHER_PROPERTIES = ('force_turbo',
 
 CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + OTHER_PROPERTIES
     
-CONFIG_PATH = '/flash/config.txt'
+CONFIG_PATH = '/boot/config.txt'
 
 CONFIG_RE_STR = r'[ \t]*({})[ \t]*=[ \t]*(\w+)'
 CONFIG_INIT_RE_STR = '^' + CONFIG_RE_STR
@@ -210,16 +210,16 @@ def get_max_ram():
     return mb
 
 def mount_readwrite():
-    log("Remounting /flash for read/write")
-    subprocess.call(['mount', '-o', 'rw,remount', '/flash'])
+    log("Remounting /boot for read/write")
+    subprocess.call(['mount', '-o', 'rw,remount', '/boot'])
 
 def mount_readonly():
-    log("Remounting /flash for read only")
-    subprocess.call(['mount', '-o', 'ro,remount', '/flash'])
+    log("Remounting /boot for read only")
+    subprocess.call(['mount', '-o', 'ro,remount', '/boot'])
 
 def dump_edid():
-    log("Dumping edid to /flash/edit.dat")
-    subprocess.call(['tvservice', '-d', '/flash/edid.dat'])
+    log("Dumping edid to /boot/edit.dat")
+    subprocess.call(['tvservice', '-d', '/boot/edid.dat'])
 
 @contextmanager
 def remount():
