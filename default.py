@@ -26,7 +26,7 @@ import utils
 if len(sys.argv) > 1 and sys.argv[1] == "dump_edid":
     with utils.remount():
         utils.dump_edid()
-        xbmcgui.Dialog().notification(utils.ADDON_NAME, "Dumped edid to /flash/edid.dat",
+        xbmcgui.Dialog().notification(utils.ADDON_NAME, "Dumped edid to /boot/edid.dat",
                                       xbmcaddon.Addon().getAddonInfo('icon'), sound=False)
 else:
     utils.log("Started script")
