@@ -211,7 +211,8 @@ def get_max_ram():
 
 def mount_readwrite():
     log("Remounting /boot for read/write")
-    subprocess.call(['sudo','mount', '-o', 'rw,remount', '/boot'])
+    subprocess.call(['sudo','umount', '/boot'])
+    subprocess.call(['sudo','mount', '-o', 'rw,umask=000', '/boot'])
 
 def mount_readonly():
     log("Remounting /boot for read only")
