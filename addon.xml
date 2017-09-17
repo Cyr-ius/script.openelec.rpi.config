@@ -2,7 +2,7 @@
 <addon id="script.rpi.config"
        name="RPi Config"
        version="0.30.0"
-       provider-name="Leopold">
+       provider-name="Cyr-ius">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
