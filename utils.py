@@ -216,7 +216,8 @@ def mount_readwrite():
 
 def mount_readonly():
     log("Remounting /boot for read only")
-    subprocess.call(['sudo','mount', '-o', 'ro,remount', '/boot'])
+    subprocess.call(['sudo','umount', '/boot'])
+    subprocess.call(['sudo','mount', '-o', 'ro,umask=022', '/boot'])
 
 def dump_edid():
     log("Dumping edid to /boot/edit.dat")
