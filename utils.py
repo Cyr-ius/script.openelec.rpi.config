@@ -211,13 +211,11 @@ def get_max_ram():
 
 def mount_readwrite():
     log("Remounting /boot for read/write")
-    subprocess.call(['sudo','umount', '/boot'])
-    subprocess.call(['sudo','mount', '-o', 'rw,umask=000', '/boot'])
+    subprocess.call(['sudo','mount', '-o', 'rw', '/boot'])
 
 def mount_readonly():
     log("Remounting /boot for read only")
-    subprocess.call(['sudo','umount', '/boot'])
-    subprocess.call(['sudo','mount', '-o', 'ro,umask=022', '/boot'])
+    subprocess.call(['sudo','mount', '-o', 'ro', '/boot'])
 
 def dump_edid():
     log("Dumping edid to /boot/edit.dat")
