@@ -35,22 +35,28 @@ OVERCLOCK_PRESET_PROPERTIES = ('arm_freq',
                                'over_voltage_sdram')
 
 OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
-                     'Modest'  : ( 800,  300,  400,    0,    0),
-                     'Medium'  : ( 900,  333,  450,    2,    0),
-                     'High'    : ( 950,  450,  450,    6,    0),
-                     'Turbo'   : (1000,  500,  500,    6,    0)}
+                     'Modest'  : ( 800,  250,  400,    0,    0),
+                     'Medium'  : ( 900,  250,  450,    2,    0),
+                     'High (Pi1)'  : ( 950,  250,  450,    6,    0),
+                     'High (Pi2)'  : ( 1000,  500,  500,   2,    0),
+                     'Turbo (Pi1/2)' : (1000,  500,  600,    6,    0),
+                     'Turbo (Pi3)'  : (1500,  500,  500,    4,    0)}
 
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
                     'gpu_mem_256',
                     'gpu_mem_512',
                     'gpu_mem_1024',
+                    'hdmi_safe',
                     'hdmi_force_hotplug',
                     'hdmi_drive',
                     'hdmi_force_edid_audio',
                     'hdmi_pixel_encoding',
                     'hdmi_ignore_hotplug',
                     'hdmi_edid_file',
+                    'hdmi_group',
+                    'hdmi_mode',
+                    'hdmi_force',
                     'config_hdmi_boost',
                     'sdtv_mode',
                     'sdtv_aspect',
@@ -65,7 +71,10 @@ OTHER_PROPERTIES = ('force_turbo',
                     'hdmi_ignore_cec',
                     'hdmi_ignore_cec_init',
                     'disable_splash',
-                    'max_usb_current')
+                    'max_usb_current',
+                    'framebuffer_width',
+                    'framebuffer_height',
+                    'framebuffer_depth')
 
 CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + OTHER_PROPERTIES
     
@@ -211,11 +220,14 @@ def get_max_ram():
 
 def mount_readwrite():
     log("Remounting /boot for read/write")
-    subprocess.call(['sudo','mount', '-o', 'rw', '/boot'])
+    subprocess.call(['sudo', 'mount', '-o', 'rw,remount', '/boot'])
 
 def mount_readonly():
     log("Remounting /boot for read only")
-    subprocess.call(['sudo','mount', '-o', 'ro', '/boot'])
+    subprocess.call(['sudo', 'mount', '-o', 'ro,remount', '/boot'])
+    
+def mount_status():
+    return subprocess.call('mount /boot|grep -q rw',shell=True)
 
 def dump_edid():
     log("Dumping edid to /boot/edit.dat")
@@ -223,11 +235,14 @@ def dump_edid():
 
 @contextmanager
 def remount():
-    mount_readwrite()
+    if not os.access(CONFIG_PATH, os.W_OK):
+        locked=True
+        mount_readwrite()
     try:
         yield
     finally:
-        mount_readonly()
+        if locked:
+            mount_readonly()
       
 @contextmanager
 def busy():  
@@ -257,14 +272,15 @@ def comment_out(m):
 
 def write_config(s):
     # write to temporary file in same directory and then rename
-    temp = tempfile.NamedTemporaryFile(dir=os.path.dirname(CONFIG_PATH), delete=False)
+    temp = tempfile.NamedTemporaryFile(delete=False)
     log("Writing config to {}".format(temp.name))
     temp.write(s)
     temp.flush()
     os.fsync(temp.fileno())
     temp.close()
     log("Renaming {} to {}".format(temp.name, CONFIG_PATH))
-    os.rename(temp.name, CONFIG_PATH)
+    subprocess.call(['sudo', 'cp', CONFIG_PATH, CONFIG_PATH+'.bak'])
+    subprocess.call(['sudo', 'mv', temp.name, CONFIG_PATH])
 
 def restart_countdown(message, timeout=10):
     progress = xbmcgui.DialogProgress()
