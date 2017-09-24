@@ -59,7 +59,7 @@
         <setting label="Read edid data from file (hdmi_edid_file)" type="bool" id="hdmi_edid_file"/>
         <setting label="Dump edid.dat" type="action" subsetting="true" visible="eq(-1,true)" action="RunScript(script.rpi.config, dump_edid)"/>
         <setting label="Maximum HDMI compatibility (hdmi_safe)" type="bool" id="hdmi_safe"/>
-        <setting label="HDMI output group (hdmi_group)" type="enum" id="hdmi_group" values="-|0|1|2" default="1"/>
+        <setting label="HDMI output group (hdmi_group)" type="enum" id="hdmi_group" values="Auto|CEA|DMT" default="0"/>
         <setting label="HDMI output format (hdmi_mode)" type="slider" id="hdmi_mode" range="0,1,86" option="int"/>
         <setting label="Force the HDMI group and format (hdmi_force)" type="bool" id="hdmi_force"/>
 
@@ -83,9 +83,9 @@
         <setting label="Bottom overscan in pixels (overscan_bottom)" type="slider" id="overscan_bottom" range="-60,1,60" option="int"/>
 
         <setting label="Framebuffer" type="lsep"/>
-        <setting label="Console width in pixels (framebuffer_width)" type="enum" id="framebuffer_width" values="-|1280" default="1"/>
-        <setting label="Console height in pixels (framebuffer_height)" type="enum" id="framebuffer_height" values="-|720" default="1"/>
-        <setting label="Specify the console framebuffer depth in bits per pixel (framebuffer_depth)" type="enum" id="framebuffer_depth" values="-|8|16|24|32" default="2"/>
+        <setting label="Console width in pixels (framebuffer_width)" type="number" id="framebuffer_width" default="1280"/>
+        <setting label="Console height in pixels (framebuffer_height)" type="number" id="framebuffer_height" default="720"/>
+        <setting label="Framebuffer depth in bits per pixel (framebuffer_depth)" type="select" id="framebuffer_depth" values="8|16|24|32" default="16"/>
     </category>
     <category label="Misc">
         <setting label="Board revision" type="number" id="revision" default="0" visible="false"/>

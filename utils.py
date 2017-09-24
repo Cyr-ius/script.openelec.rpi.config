@@ -235,7 +235,8 @@ def dump_edid():
 
 @contextmanager
 def remount():
-    if not os.access(CONFIG_PATH, os.W_OK):
+    if not mount_status():
+	log("Disk locked, mount read/write")
         locked=True
         mount_readwrite()
     try:
