@@ -30,12 +30,13 @@ import utils
 ARCH = utils.get_arch()
 
 if not ARCH.startswith('RPi'):
+    utils.log("No RPi , bye")
     sys.exit(1)
 
 
 class Main(object):
     def __init__(self):
-        utils.log("Started service")
+        utils.log("Service started")
 
         revision = utils.get_revision()
         utils.log("Board revision: {}".format(revision))
@@ -56,9 +57,12 @@ class Main(object):
         except IOError:
             utils.log_exception()
 
-        self.monitor = MyMonitor(updated_settings_callback=self.apply_config)
+        MyMon = MyMonitor(updated_settings_callback=self.apply_config)
         
-        while (not xbmc.abortRequested):
+        while not MyMon.abortRequested():
+            if MyMon.waitForAbort():
+                utils.log("Break MyMonitor")
+                break
             xbmc.sleep(1000)
 
     def apply_config(self):
@@ -159,5 +163,11 @@ class MyMonitor(xbmc.Monitor):
     def onSettingsChanged(self):
         self.updated_settings_callback()
 
+if __name__ == '__main__':
+    monitor = xbmc.Monitor()
+    while not monitor.abortRequested():
+        Main()
+        if monitor.waitForAbort():
+            utils.log("Bye bye")
+            break
 
-Main()

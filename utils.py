@@ -214,8 +214,11 @@ def get_max_ram():
     r = re.compile('[a-z]+=(\d+)M')
     mb=0
     for mem in ("arm", "gpu"):
-        output = subprocess.check_output(["vcgencmd", "get_mem", mem]).decode()
-        mb += int(r.match(output).group(1))
+        try:
+            output = subprocess.check_output(["vcgencmd", "get_mem", mem]).decode()
+            mb += int(r.match(output).group(1))
+        except:
+            return mb
     return mb
 
 def mount_readwrite():
