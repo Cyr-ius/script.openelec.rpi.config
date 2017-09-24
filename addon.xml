@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="script.rpi.config"
        name="RPi Config"
-       version="0.30.0"
+       version="0.30.1"
        provider-name="Cyr-ius">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
-  <extension point="xbmc.service" library="service.py" start="startup"/>
   <extension point="xbmc.python.script" library="default.py"/>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary>Raspberry Pi configuration add-on</summary>
-    <description>This Kodi add-on allows Raspberry Pi settings such as overclocking to be configured without having to manually edit /flash/config.txt.</description>
+    <description>This Kodi add-on allows Raspberry Pi settings such as overclocking to be configured without having to manually edit /boot/config.txt.</description>
     <disclaimer>This add-on has the potential to void the warranty of your Raspberry Pi. Use at your own risk!</disclaimer>
     <source>http://github.com/Cyr-ius/script.rpi.config</source>
     <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
