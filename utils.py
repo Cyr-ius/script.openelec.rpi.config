@@ -42,6 +42,17 @@ OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
                      'Turbo (Pi1/2)' : (1000,  500,  600,    6,    0),
                      'Turbo (Pi3)'  : (1500,  500,  500,    4,    0)}
 
+RESOLUTION_PRESET_PROPERTIES = ('framebuffer_width',
+                               'framebuffer_height')
+                     
+RESOLUTION_PRESETS = {'480i'  : ( 720, 480),
+                     '576i'  : ( 720, 576),
+                     '800x600'  : ( 800, 600),
+                     '1280x1024'  : ( 1280, 1024),
+                     '720p' : ( 1280, 720),
+                     '1080i'  : ( 1920, 1080),                   
+                     '4k'  : ( 3840,  2160)}                     
+
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
                     'gpu_mem_256',
@@ -72,11 +83,9 @@ OTHER_PROPERTIES = ('force_turbo',
                     'hdmi_ignore_cec_init',
                     'disable_splash',
                     'max_usb_current',
-                    'framebuffer_width',
-                    'framebuffer_height',
                     'framebuffer_depth')
 
-CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + OTHER_PROPERTIES
+CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + RESOLUTION_PRESET_PROPERTIES + OTHER_PROPERTIES
     
 CONFIG_PATH = '/boot/config.txt'
 
@@ -171,6 +180,14 @@ def get_arch():
         arch = 'RPi.arm'
     
     return arch
+
+def get_model():
+    try:
+        model = open('/proc/device-tree/model').read().rstrip()
+    except IOError:
+        model = 'Unknown'
+
+    return model
 
 def read_revision():
     with open('/proc/cpuinfo') as cpuinfo:

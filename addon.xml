@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="script.rpi.config"
        name="RPi Config"
-       version="0.30.1"
+       version="0.31.0"
        provider-name="Cyr-ius">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

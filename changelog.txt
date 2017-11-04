@@ -1,3 +1,7 @@
+0.31.0
+ - Add display model
+ - Fixed resolution selecting
+ 
 0.30.0
  - Universel add-on for Raspberry
  

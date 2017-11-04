@@ -75,7 +75,7 @@
         <setting label="Aspect (sdtv_aspect)" type="enum" id="sdtv_aspect" values="-|4:3|14:9|16:9" default="1"/>
 
         <setting label="Overscan" type="lsep"/>
-        <setting label="Disable (disable_overscan)" type="bool" id="disable_overscan"/>
+        <setting label="Disable (disable_overscan)" type="bool" id="disable_overscan" default="true"/>
         <setting label="Scaling (overscan_scale)" type="bool" id="overscan_scale"/>
         <setting label="Left overscan in pixels (overscan_left)" type="slider" id="overscan_left" range="-60,1,60" option="int"/>
         <setting label="Right overscan in pixels (overscan_right)" type="slider" id="overscan_right" range="-60,1,60" option="int"/>
@@ -83,11 +83,31 @@
         <setting label="Bottom overscan in pixels (overscan_bottom)" type="slider" id="overscan_bottom" range="-60,1,60" option="int"/>
 
         <setting label="Framebuffer" type="lsep"/>
-        <setting label="Console width in pixels (framebuffer_width)" type="number" id="framebuffer_width" default="1280"/>
-        <setting label="Console height in pixels (framebuffer_height)" type="number" id="framebuffer_height" default="720"/>
+	<setting label="Resolution" type="labelenum" id="resolution_preset" values="Custom|480i|576i|800x600|1280x1024|720p|1080i|4k" default="1280x1024"/>
+        
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]720[/COLOR]" type="lsep" visible="eq(-1,1)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]720[/COLOR]" type="lsep" visible="eq(-2,2)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]800[/COLOR]" type="lsep" visible="eq(-3,3)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]1280[/COLOR]" type="lsep" visible="eq(-4,4)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]1280[/COLOR]" type="lsep" visible="eq(-5,5)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]1920[/COLOR]" type="lsep" visible="eq(-6,6)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console width in pixels (framebuffer_width) = [/COLOR][COLOR white]3840[/COLOR]" type="lsep" visible="eq(-7,7)" subsetting="true"/>
+
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]480[/COLOR]" type="lsep" visible="eq(-8,1)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]576[/COLOR]" type="lsep" visible="eq(-9,2)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]600[/COLOR]" type="lsep" visible="eq(-10,3)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]1024[/COLOR]" type="lsep" visible="eq(-11,4)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]720[/COLOR]" type="lsep" visible="eq(-12,5)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]1080[/COLOR]" type="lsep" visible="eq(-13,6)" subsetting="true"/>
+	<setting label="[COLOR grey2]Console height in pixels (framebuffer_height) = [/COLOR][COLOR white]2160[/COLOR]" type="lsep" visible="eq(-14,7)" subsetting="true"/>
+
+        <setting label="Console width in pixels (framebuffer_width)" type="number" id="framebuffer_width" subsetting="true" visible="eq(-15,0)" default="1280"/>
+        <setting label="Console height in pixels (framebuffer_height)" type="number" id="framebuffer_height" subsetting="true" visible="eq(-16,0)" default="720"/>
+
         <setting label="Framebuffer depth in bits per pixel (framebuffer_depth)" type="select" id="framebuffer_depth" values="8|16|24|32" default="16"/>
     </category>
     <category label="Misc">
+	<setting label="Model" type="text" id="model" enable="false"/>
         <setting label="Board revision" type="number" id="revision" default="0" visible="false"/>
         <setting label="Board type" type="number" id="type" default="0" visible="false"/>
         <setting label="RAM size" type="number" id="max_ram" default="512" visible="false"/>
@@ -102,7 +122,7 @@
         <setting label="VC-1 (decode_WVC1)" type="text" id="decode_WVC1"/>
 
         <setting label="Other" type="lsep"/>
-        <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
+        <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash" default="true"/>
         <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-12,16)|eq(-11,2)|eq(-11,3)|eq(-11,4)"/>
     </category>
     <category label="Settings">

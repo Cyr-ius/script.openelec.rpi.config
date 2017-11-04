@@ -37,6 +37,11 @@ if not ARCH.startswith('RPi'):
 class Main(object):
     def __init__(self):
         utils.log("Service started")
+        
+        model = utils.get_model()
+        utils.log("Model: {}".format(model))
+        if model is not None:
+            utils.set_property_setting('model', model)        
 
         revision = utils.get_revision()
         utils.log("Board revision: {}".format(revision))
@@ -60,10 +65,9 @@ class Main(object):
         MyMon = MyMonitor(updated_settings_callback=self.apply_config)
         
         while not MyMon.abortRequested():
-            if MyMon.waitForAbort():
+            if MyMon.waitForAbort(1000):
                 utils.log("Break MyMonitor")
                 break
-            xbmc.sleep(1000)
 
     def apply_config(self):
         utils.log("Applying settings to {}".format(utils.CONFIG_PATH))
@@ -77,6 +81,15 @@ class Main(object):
         elif overclock_preset in utils.OVERCLOCK_PRESETS:
             config = OrderedDict(zip(utils.OVERCLOCK_PRESET_PROPERTIES,
                                      utils.OVERCLOCK_PRESETS[overclock_preset]))
+        
+        resolution_preset = utils.get_setting('resolution_preset')
+        utils.log("Using {} resolution settings".format(resolution_preset))
+        if resolution_preset == 'Custom':
+            for prop in utils.RESOLUTION_PRESET_PROPERTIES:
+                config[prop] = utils.get_property_setting(prop)
+        elif resolution_preset in utils.RESOLUTION_PRESETS:
+            config = OrderedDict(zip(utils.RESOLUTION_PRESET_PROPERTIES,
+                                     utils.RESOLUTION_PRESETS[resolution_preset]))
 
         for prop in utils.OTHER_PROPERTIES:
             value = utils.get_property_setting(prop)
