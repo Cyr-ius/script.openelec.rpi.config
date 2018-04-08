@@ -79,8 +79,7 @@ class Main(object):
             for prop in utils.OVERCLOCK_PRESET_PROPERTIES:
                 config[prop] = utils.get_property_setting(prop)
         elif overclock_preset in utils.OVERCLOCK_PRESETS:
-            config = OrderedDict(zip(utils.OVERCLOCK_PRESET_PROPERTIES,
-                                     utils.OVERCLOCK_PRESETS[overclock_preset]))
+            config = OrderedDict(zip(utils.OVERCLOCK_PRESET_PROPERTIES,utils.OVERCLOCK_PRESETS[overclock_preset]))
         
         resolution_preset = utils.get_setting('resolution_preset')
         utils.log("Using {} resolution settings".format(resolution_preset))
@@ -88,13 +87,14 @@ class Main(object):
             for prop in utils.RESOLUTION_PRESET_PROPERTIES:
                 config[prop] = utils.get_property_setting(prop)
         elif resolution_preset in utils.RESOLUTION_PRESETS:
-            config = OrderedDict(zip(utils.RESOLUTION_PRESET_PROPERTIES,
-                                     utils.RESOLUTION_PRESETS[resolution_preset]))
+            config = OrderedDict(zip(utils.RESOLUTION_PRESET_PROPERTIES,utils.RESOLUTION_PRESETS[resolution_preset]))
 
         for prop in utils.OTHER_PROPERTIES:
             value = utils.get_property_setting(prop)
             if value is not None:
                 config[prop] = value
+            else:
+                config[prop] = None
                 
         if ('force_turbo' in config and config['force_turbo'] == 1 and 'over_voltage' in config and config['over_voltage'] > 0):
             if not xbmcgui.Dialog().yesno("RPi Config WARNING!!",
@@ -135,8 +135,7 @@ class Main(object):
                         updated = True
                     elif comment or str(value) != old_value:
                         utils.log("  Setting to {}".format(value))
-                        config_txt_new = config_property_re.sub(partial(utils.replace_value, value),
-                                                                config_txt_new)
+                        config_txt_new = config_property_re.sub(partial(utils.replace_value, value),config_txt_new)
                         updated = True
                     else:
                         utils.log("  Unchanged ({})".format(value))

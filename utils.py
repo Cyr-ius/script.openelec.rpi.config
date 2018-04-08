@@ -28,32 +28,37 @@ import traceback
 
 import xbmc, xbmcgui, xbmcaddon
 
-OVERCLOCK_PRESET_PROPERTIES = ('arm_freq',
-                               'core_freq',
-                               'sdram_freq',
-                               'over_voltage',
-                               'over_voltage_sdram')
+OVERCLOCK_PRESET_PROPERTIES = (
+                   'arm_freq',
+                   'core_freq',
+                   'sdram_freq',
+                   'over_voltage',
+                   'over_voltage_sdram')
 
-OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
-                     'Modest'  : ( 800,  250,  400,    0,    0),
-                     'Medium'  : ( 900,  250,  450,    2,    0),
-                     'High (Pi1)'  : ( 950,  250,  450,    6,    0),
-                     'High (Pi2)'  : ( 1000,  500,  500,   2,    0),
-                     'Turbo (Pi1/2)' : (1000,  500,  600,    6,    0),
-                     'Turbo (Pi3)'  : (1500,  500,  500,    4,    0)}
+OVERCLOCK_PRESETS = {
+                    'Disabled': (None, None, None, None, None),
+                    'Modest': ( 800, 250, 400, 0, 0),
+                    'Medium': ( 900, 250, 450, 2, 0),
+                    'High': ( 950, 250, 450, 6, 0),
+                    'Turbo (Pi1)': ( 1000, 500, 600, 6, 0),
+                    'Turbo (Pi2)': (1000, 500,  500, 2, 0),
+                    'Turbo (Pi3)': (1500, 500, 500, 4, 0)}
 
-RESOLUTION_PRESET_PROPERTIES = ('framebuffer_width',
-                               'framebuffer_height')
+RESOLUTION_PRESET_PROPERTIES = (
+                    'framebuffer_width',
+                    'framebuffer_height')
                      
-RESOLUTION_PRESETS = {'480i'  : ( 720, 480),
-                     '576i'  : ( 720, 576),
-                     '800x600'  : ( 800, 600),
-                     '1280x1024'  : ( 1280, 1024),
-                     '720p' : ( 1280, 720),
-                     '1080i'  : ( 1920, 1080),                   
-                     '4k'  : ( 3840,  2160)}                     
+RESOLUTION_PRESETS = {
+                    '480i'  : ( 720, 480),
+                    '576i'  : ( 720, 576),
+                    '800x600'  : ( 800, 600),
+                    '1280x1024'  : ( 1280, 1024),
+                    '720p' : ( 1280, 720),
+                    '1080i'  : ( 1920, 1080),                   
+                    '4k'  : ( 3840,  2160)}                     
 
-OTHER_PROPERTIES = ('force_turbo',
+OTHER_PROPERTIES = (
+                    'force_turbo',
                     'initial_turbo',
                     'gpu_mem_256',
                     'gpu_mem_512',
@@ -256,9 +261,11 @@ def dump_edid():
 @contextmanager
 def remount():
     if not mount_status():
-	log("Disk locked, mount read/write")
+        log("Disk locked, mount read/write")
         locked=True
         mount_readwrite()
+    else:
+        locked=False
     try:
         yield
     finally:

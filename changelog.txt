@@ -1,3 +1,9 @@
+0.33.0
+ - Fixed a bug when the MPG2 en AVC1 licence remove
+ 
+0.32.0
+ - Fixed a bug when the value is empty
+ 
 0.31.0
  - Add display model
  - Fixed resolution selecting

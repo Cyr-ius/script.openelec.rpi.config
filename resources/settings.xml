@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="Overclocking">
-        <setting label="Preset" type="labelenum" id="overclock_preset" values="Disabled|Custom|Modest|Medium|High (Pi1)|High (Pi2)|Turbo (Pi1/2)|Turbo (Pi3)" default="Disabled"/>
+        <setting label="Preset" type="labelenum" id="overclock_preset" values="Disabled|Custom|Modest|Medium|High|Turbo (Pi1)|Turbo (Pi2)|Turbo (Pi3)" default="Disabled"/>
 
         <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]800[/COLOR]" type="lsep" visible="eq(-1,2)" subsetting="true"/>
         <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]900[/COLOR]" type="lsep" visible="eq(-2,3)" subsetting="true"/>
@@ -20,15 +20,15 @@
         <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]400[/COLOR]" type="lsep" visible="eq(-13,2)" subsetting="true"/>
         <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]450[/COLOR]" type="lsep" visible="eq(-14,3)" subsetting="true"/>
         <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]450[/COLOR]" type="lsep" visible="eq(-15,4)" subsetting="true"/>
-        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]500[/COLOR]" type="lsep" visible="eq(-16,5)" subsetting="true"/>
-        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]600[/COLOR]" type="lsep" visible="eq(-17,6)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]600[/COLOR]" type="lsep" visible="eq(-16,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]500[/COLOR]" type="lsep" visible="eq(-17,6)" subsetting="true"/>
         <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]500[/COLOR]" type="lsep" visible="eq(-18,7)" subsetting="true"/>
 
         <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-19,2)" subsetting="true"/>
         <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]2[/COLOR]" type="lsep" visible="eq(-20,3)" subsetting="true"/>
         <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]6[/COLOR]" type="lsep" visible="eq(-21,4)" subsetting="true"/>
-        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]2[/COLOR]" type="lsep" visible="eq(-22,5)" subsetting="true"/>
-        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]6[/COLOR]" type="lsep" visible="eq(-23,6)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]6[/COLOR]" type="lsep" visible="eq(-22,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]2[/COLOR]" type="lsep" visible="eq(-23,6)" subsetting="true"/>
         <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]4[/COLOR]" type="lsep" visible="eq(-24,7)" subsetting="true"/>
 
         <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-25,2)" subsetting="true"/>
